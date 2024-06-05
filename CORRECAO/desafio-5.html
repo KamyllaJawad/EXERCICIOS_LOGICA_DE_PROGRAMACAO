@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 5</title>
+</head>
+<body>
+    <h1>Calculadora de Tintas</h1>
+    <form>
+        <label for="area">Área a ser pintada (m²):</label>
+        <input type="number" id="area" required>
+        <br>
+        <button type="button" onclick="calcularTintas()">Calcular Quantidade de Tintas</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularTintas() {
+            const area = parseFloat(document.getElementById('area').value);
+            const cobertura = 3; // 1 litro para cada 3 m²
+            const litrosNecessarios = area / cobertura;
+            const capacidadeLata = 18; // 18 litros por lata
+            const precoLata = 80;
+
+            const latasNecessarias = Math.ceil(litrosNecessarios / capacidadeLata);
+            const precoTotal = latasNecessarias * precoLata;
+
+            document.getElementById('resultado').innerHTML = `
+                Quantidade de Latas de Tinta: ${latasNecessarias}<br>
+                Preço Total: R$ ${precoTotal.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>

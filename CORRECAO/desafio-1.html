@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 1</title>
+</head>
+<body>
+    <h1>Calculadora de Preço Final de Venda</h1>
+    <form>
+        <label for="vlc">Valor de Custo do Item (VLC):</label>
+        <input type="number" id="vlc" required>
+        <br>
+        <label for="cr">Comissão do Representante (% CR):</label>
+        <input type="number" id="cr" required>
+        <br>
+        <label for="ml">Margem de Lucro (% ML):</label>
+        <input type="number" id="ml" required>
+        <br>
+        <label for="gov">Impostos Governamentais (% GOV):</label>
+        <input type="number" id="gov" required>
+        <br>
+        <button type="button" onclick="calcularValorFinal()">Calcular Valor Final</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularValorFinal() {
+            const vlc = parseFloat(document.getElementById('vlc').value);
+            const cr = parseFloat(document.getElementById('cr').value) / 100;
+            const ml = parseFloat(document.getElementById('ml').value) / 100;
+            const gov = parseFloat(document.getElementById('gov').value) / 100;
+
+            const vc = vlc * cr;
+            const vm = (vlc + vc) * ml;
+            const vg = (vlc + vc + vm) * gov;
+            const vf = vlc + vc + vm + vg;
+
+            document.getElementById('resultado').innerHTML = `
+                Valor Comissão (VC): R$ ${vc.toFixed(2)}<br>
+                Valor Margem de Lucro (VM): R$ ${vm.toFixed(2)}<br>
+                Valor de Impostos Governamentais (VG): R$ ${vg.toFixed(2)}<br>
+                Valor Final (VF): R$ ${vf.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>

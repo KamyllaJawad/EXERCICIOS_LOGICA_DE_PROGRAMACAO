@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 4</title>
+</head>
+<body>
+    <h1>Calculadora de Salário</h1>
+    <form>
+        <label for="salarioHora">Quanto você ganha por hora:</label>
+        <input type="number" id="salarioHora" required>
+        <br>
+        <label for="horasTrabalhadas">Número de horas trabalhadas no mês:</label>
+        <input type="number" id="horasTrabalhadas" required>
+        <br>
+        <button type="button" onclick="calcularSalario()">Calcular Salário</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularSalario() {
+            const salarioHora = parseFloat(document.getElementById('salarioHora').value);
+            const horasTrabalhadas = parseInt(document.getElementById('horasTrabalhadas').value);
+
+            const salarioBruto = salarioHora * horasTrabalhadas;
+            const impostoRenda = salarioBruto * 0.11;
+            const inss = salarioBruto * 0.08;
+            const sindicato = salarioBruto * 0.05;
+            const salarioLiquido = salarioBruto - impostoRenda - inss - sindicato;
+
+            document.getElementById('resultado').innerHTML = `
+                Salário Bruto: R$ ${salarioBruto.toFixed(2)}<br>
+                INSS: R$ ${inss.toFixed(2)}<br>
+                Sindicato: R$ ${sindicato.toFixed(2)}<br>
+                Salário Líquido: R$ ${salarioLiquido.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>
